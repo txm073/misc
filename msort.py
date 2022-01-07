@@ -16,24 +16,36 @@ def merge(list1, list2):
             del list2[0]
     return output
 
-def split(arr, n_splits):
+def split(arr, n_splits, rlevel=0):
     output = []
     left, right = arr[:len(arr) // 2], arr[len(arr) // 2:]
     for arr in [left, right]:
         if not n_splits:
             output.append(arr)
         else:
-            output.extend(split(merge(*split(arr, n_splits=n_splits - 1)), n_splits=n_splits - 1))
+            output.extend(split(arr, n_splits=n_splits - 1, rlevel=rlevel + 1))
+    if not rlevel:
+        for i, sublist in enumerate(output):
+            if len(sublist) == 2:
+                output[i] = [sublist[0], sublist[1]] if sublist[0] <= sublist[1] else [sublist[1], sublist[0]]
     return output
-        
-def merge_sort(nums):
-    nums = split(nums)
-    for iteration in range(log(len(nums), 2)):
-        pass
+         
+def merge_sort(nums, rlevel=0):
+    if not rlevel:
+        splits = split(nums, n_splits=int(log(len(nums), 2)) - 1)
+    else:
+        splits = nums
+    output = []
+    for i in range(0, len(splits), 2):
+        output.append(merge(splits[i], splits[i + 1]))
+    if len(output) == 1:
+        return output[0]
+    else:
+        return merge_sort(output, rlevel=rlevel + 1)    
 
 nums = [random.randint(1, 10) for i in range(35)]
 print(nums)
-sort = split(nums, int(log(len(nums), 2)) - 1)
+sort = merge_sort(nums)
 print(sort)
-print(sum([len(sublist) for sublist in sort]))
+
 
