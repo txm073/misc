@@ -1,6 +1,15 @@
 import random
 from math import log
 
+def recursive(fn):
+    fn.rlevel = 0
+    def wrapper(*args, **kwargs):    
+        fn.rlevel += 1
+        value = fn(*args, **kwargs)
+        fn.rlevel -= 1
+        return value
+    return wrapper
+
 def merge(list1, list2):
     output = []
     for i in range(len(list1) + len(list2)):
@@ -43,9 +52,8 @@ def merge_sort(nums, rlevel=0):
     else:
         return merge_sort(output, rlevel=rlevel + 1)    
 
-nums = [random.randint(1, 10) for i in range(35)]
-print(nums)
-sort = merge_sort(nums)
-print(sort)
-
-
+if __name__ == "__main__":
+    nums = [random.randint(1, 10) for i in range(18)]
+    print(nums)
+    sort = merge_sort(nums)
+    print(sort)
