@@ -15,20 +15,6 @@ show_steps = True
 valid_string = False
 while valid_string == False:
     calc = input("Enter a calculation: ")
-    valid_option = False
-    while valid_option == False:
-        option = input("Would you like to see the steps? ").upper()
-        option = option.replace(" ","")
-        if option == "YES":
-            show_steps = True
-            valid_option = True
-        elif option == "NO":
-            show_steps = False
-            valid_option = True
-        else:
-            print("That is not an option!")
-    if show_steps:
-        print(calc.replace(" ", ""))
     valid_string = check_string(calc)
     if valid_string == False:
         print("Syntax error: wrong symbols")

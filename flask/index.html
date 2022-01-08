@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+      window.onload = (e) => {
+        const http = new XMLHttpRequest();
+        http.open(
+          "GET",
+          "https://google.com",
+          true // Asynchronous
+        );
+        // Request headers (CORS)
+        http.setRequestHeader("Content-Type", "application/xml");
+        http.setRequestHeader("Accept", "application/json");
+        http.setRequestHeader("X-PINGOTHER", "pingpong");
+        http.setRequestHeader("Access-Control-Allow-Origin", "https://google.com");
+        http.setRequestHeader("Access-Control-Allow-Credentials", "true");
+        http.setRequestHeader("Access-Control-Allow-Methods", "GET");
+        http.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
+        // Send no data
+        http.send(null);
+        // Callback
+        http.onload = () => {
+          console.log(http.responseText);
+        };
+      };
+    </script>
+  </body>
+</html>
