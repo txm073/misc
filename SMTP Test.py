@@ -29,8 +29,8 @@ def test_email():
     msg.set_content("This is a test email sent using Python!")
     add_attachment(msg, "test_image.jpg")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com",465) as smtp: 
-        smtp.login("SMTPTestAddress864@gmail.com","qdh5ykmtDrpj")
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp: 
+        smtp.login("SMTPTestAddress864@gmail.com", "qdh5ykmtDrpj")
         input("Press enter to send: ")
         smtp.send_message(msg)
         print("Message sent")
