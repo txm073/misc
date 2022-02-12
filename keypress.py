@@ -261,5 +261,13 @@ def releaseclick(button):
         user32.mouse_event(button[1])
         sleep(delay)
 
-sleep(5)
-type_string("jhsldsahldhlshdlasldjashldhslhdljashldjsahldsahjlsahljdhljashljsaldjashljdhasljdlasjhdlsahldjsahljdshljshadljhsaljhldjhsljaljdashljd")
+
+from win32com import client
+
+def run_as(cmd, password):
+    shell = client.Dispatch("WScript.shell")
+    shell.Run(f"runas /user:administrator {cmd}")
+    time.sleep(1)
+    shell.SendKeys(f"{password}\r\n", 0)
+
+run_as("notepad.exe", "qdh5ykmtDrpjf4phPskLnx4k")
