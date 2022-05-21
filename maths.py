@@ -2,6 +2,7 @@ import math
 from decimal import Decimal, getcontext
 from time import perf_counter
 
+
 ITERATIONS = 10000000
 
 def timed(fn):
@@ -23,6 +24,22 @@ def calc_e():
         output += (1 / fact(i))
     return output
 
+def ln(x):
+    """
+    f(x) = a ^ x
+    dx/dt = (a ^ x) ln(a)
+          = (a ^ (t + dt) - a ^ t) / dt
+          = (a ^ t * a ^ dt - a ^ t) / dt
+          = (a ^ t) * ((a ^ dt - 1) / dt)
+    ln(x) = (x ^ dt - 1) / dt 
+             dt -> 0
+    """
+    dt = 1e-15
+    return (x ** dt - 1) / dt
+
+def log(x, base=10):
+    return ln(x) / ln(base)
+
 @timed
 def chudnovsky(digits):
     output = Decimal(0)
@@ -32,7 +49,4 @@ def chudnovsky(digits):
         output += (Decimal(numerator) / Decimal(denominator))
     return round(1 / (12 * output), digits)
 
-
-pi = chudnovsky(15)[0]
-print(pi)
-print(len(str(pi)))
+print(log(1, 2))

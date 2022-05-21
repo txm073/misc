@@ -63,15 +63,3 @@ def min_bit_repr(integer, round=True):
         for index, value in enumerate(place_values):
             if integer < value:
                 return int(log(place_values[index-1], 2) + 1)
-
-text = "This is some text it is very cool indeed"
-if len(text) % 16:
-    text += " " * (16 - len(text) % 16)
-bytes_array = np.array([hex(ord(char))[2:].upper() for char in text])
-sections = np.array_split(bytes_array, len(bytes_array) // 16)
-for section in sections:
-    for i in range(0, 16, 4):
-        print(*section[i:i+4], sep=" | ")
-        if i != 12:
-            print("-" * 17)
-    print()

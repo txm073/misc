@@ -105,6 +105,8 @@ def merge_sort(nums):
 
 
 if __name__ == "__main__":
-    nums = [random.randint(1, 1000) for i in range(500000)]
-    sort = merge_sort(nums)
-    print(sort[1])
+    nums = [random.randint(1, 1000) for i in range(30000)]
+    print("Builtin Python sort:", timed(lambda: sorted(nums))()[1])
+    print("Merge sort:", merge_sort(nums)[1])
+    print("Bubble sort:", bubble_sort(nums)[1])
+    print("Insertion sort:", insertion_sort(nums)[1])
