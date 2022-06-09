@@ -41,6 +41,7 @@ int keyboardInput(string str) {
 }
 
 int main(int argc, char *argv[]) {
-    MessageBox(0, "Hello World!\n", "Message Box", MB_ICONWARNING);
+    cout << KEYEVENTF_EXTENDEDKEY << " " << KEYEVENTF_KEYUP << endl;
+
     return 0;
 }
