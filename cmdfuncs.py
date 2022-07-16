@@ -26,9 +26,4 @@ def running(sort="name"):
 def run_elevated(terminal="powershell.exe", command=None):
     shell.ShellExecuteEx(lpVerb="runas", lpFile=terminal, lpParameters=command)
 
-import subprocess as sp
 
-prog = sp.Popen(['runas', '/noprofile', '/user:Administrator', 'dir', '"C:/Documents and Settings"'],stdin=sp.PIPE, stdout=sp.PIPE)
-prog.stdin.write(b'qdh5ykmtDrpjf4phPskLnx4k')
-print(prog.stdout.read())
-prog.communicate()

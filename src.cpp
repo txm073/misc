@@ -2,24 +2,21 @@
 #include <string>
 #include <iostream>
 
-typedef int(__cdecl* add)(int a, int b);
+typedef void(__cdecl* Greet)();
 
 int main(int argc, char* argv[]) {
-    HINSTANCE lib = LoadLibrary("./maths.dll");
+    HINSTANCE lib = LoadLibrary((LPCSTR)"./liblongdouble.dll");
     if (!lib) {
         std::cout << "Failed to load library\n";
         return 1;
     }
-
-    auto csAdd = (add)GetProcAddress(lib, "add");
-    if (!csAdd) {
+    auto greet = (Greet)GetProcAddress(lib, "greet");
+    if (!greet) {
         std::cout << "Failed to locate function\n";
         return 1;
     }
 
-    int sum = csAdd(5, 3);
-    std::cout << "Sum: " << sum << "\n";
-
+    greet();
     FreeLibrary(lib);
 
     return 0;

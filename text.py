@@ -28,5 +28,4 @@ def tree(directory=os.path.abspath(os.path.dirname(__file__)),
     if rlevel == 0 and return_items:
         return global_items    
     
-items = tree("E:\\Python", filter=True, pipe="output.txt")
-
+print(None or 6)
