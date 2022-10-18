@@ -20,6 +20,8 @@ int mouseInput() {
     return (success != 2);
 }
 
+
+
 int keyboardInput(string str) {
     int length = str.length() * 2;
     INPUT in[length] = {};

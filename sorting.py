@@ -22,9 +22,18 @@ def bubble_sort(nums):
             try:
                 if nums[j] > nums[j + 1]:
                     nums[j], nums[j + 1] = nums[j + 1], nums[j] 
+                    print("Swap:", next(gen))
             except IndexError:
                 continue
     return nums
+
+def _gen():
+    i = 0
+    while True:
+        yield i
+        i += 1
+
+gen = _gen()
 
 @timed
 def insertion_sort(nums):
@@ -105,8 +114,4 @@ def merge_sort(nums):
 
 
 if __name__ == "__main__":
-    nums = [random.randint(1, 1000) for i in range(30000)]
-    print("Builtin Python sort:", timed(lambda: sorted(nums))()[1])
-    print("Merge sort:", merge_sort(nums)[1])
-    print("Bubble sort:", bubble_sort(nums)[1])
-    print("Insertion sort:", insertion_sort(nums)[1])
+    print(bubble_sort([5, 6, 3, 2, 4, 1]))
