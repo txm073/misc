@@ -22,6 +22,6 @@ def timer(fn):
     return value, time.perf_counter() - start
 
 nums = (25234, 27192242, 856)
-#print("Builtin method:", timer(lambda: pow(*nums)))
-#print("Using iterative multiplication:", timer(lambda: powmod(*nums)))
-#print("Using square-multiply algorithm:", timer(lambda: square_mult(*nums)))
+print("Builtin method:", timer(lambda: pow(*nums)))
+print("Using iterative multiplication:", timer(lambda: powmod(*nums)))
+print("Using square-multiply algorithm:", timer(lambda: square_mult(*nums)))
